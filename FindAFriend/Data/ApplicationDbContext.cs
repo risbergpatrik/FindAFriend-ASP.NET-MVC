@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FindAFriend.Models;
 
 namespace FindAFriend.Data
 {
@@ -12,5 +13,9 @@ namespace FindAFriend.Data
             : base(options)
         {
         }
+        public DbSet<FindAFriend.Models.Profile> Profile { get; set; }
+        public DbSet<FindAFriend.Models.FriendRequests> FriendRequests { get; set; }
+        public DbSet<FindAFriend.Models.Friends> Friends { get; set; }
+        public DbSet<FindAFriend.Models.Message> Message { get; set; }
     }
 }
