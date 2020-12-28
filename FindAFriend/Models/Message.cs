@@ -10,6 +10,8 @@ namespace FindAFriend.Models
     {
         [Key]
         public virtual int ID { get; set; }
+
+        public virtual string Text { get; set; }
         public virtual String Sender { get; set; }
         public virtual String Recipient { get; set; }
 

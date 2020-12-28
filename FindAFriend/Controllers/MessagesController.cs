@@ -54,10 +54,11 @@ namespace FindAFriend.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Sender,Recipient,TimeSent")] Message message)
+        public async Task<IActionResult> Create([Bind("ID,Text,Sender,Recipient,TimeSent")] Message message)
         {
             if (ModelState.IsValid)
             {
+                message.TimeSent = DateTime.Now;
                 _context.Add(message);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +87,7 @@ namespace FindAFriend.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Sender,Recipient,TimeSent")] Message message)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Text,Sender,Recipient,TimeSent")] Message message)
         {
             if (id != message.ID)
             {

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FindAFriend.Data;
 using FindAFriend.Models;
 
+
 namespace FindAFriend.Controllers
 {
     public class ProfilesController : Controller
@@ -26,20 +27,20 @@ namespace FindAFriend.Controllers
         }
 
         // GET: Profiles/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details()
         {
-            if (id == null)
+            string userID = User.Identity.Name; 
+            if (userID == null)
             {
-                return NotFound();
+                return View("Create");
             }
 
             var profile = await _context.Profile
-                .FirstOrDefaultAsync(m => m.ProfileID == id);
+                .FirstOrDefaultAsync(m => m.UserID == userID);
             if (profile == null)
             {
-                return NotFound();
+                return View("Create");
             }
-
             return View(profile);
         }
 
@@ -56,8 +57,10 @@ namespace FindAFriend.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProfileID,Name,Birthday,PictureUrl,Description,City,UserID")] Profile profile)
         {
+
             if (ModelState.IsValid)
             {
+                profile.UserID = User.Identity.Name;
                 _context.Add(profile);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -148,6 +151,10 @@ namespace FindAFriend.Controllers
         private bool ProfileExists(int id)
         {
             return _context.Profile.Any(e => e.ProfileID == id);
+        }
+        public bool ProfileExistsWithUserID(string userID)
+        {
+            return _context.Profile.Any(e => e.UserID == userID);
         }
     }
 }

@@ -865,3 +865,8 @@ C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Friends\Details.cshtml.g.cs
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Friends\Edit.cshtml.g.cs
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Friends\Index.cshtml.g.cs
+C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Messages\Create.cshtml.g.cs
+C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Messages\Delete.cshtml.g.cs
+C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Messages\Details.cshtml.g.cs
+C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Messages\Edit.cshtml.g.cs
+C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Messages\Index.cshtml.g.cs
