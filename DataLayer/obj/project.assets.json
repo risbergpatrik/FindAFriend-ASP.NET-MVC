@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETStandard,Version=v2.0": {
+    ".NETStandard,Version=v2.1": {
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -24,6 +24,16 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "FindAFriend/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/FindAFriend.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FindAFriend.dll": {}
         }
       }
     }
@@ -172,10 +182,16 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "FindAFriend/1.0.0": {
+      "type": "project",
+      "path": "../FindAFriend/FindAFriend.csproj",
+      "msbuildProject": "../FindAFriend/FindAFriend.csproj"
     }
   },
   "projectFileDependencyGroups": {
-    ".NETStandard,Version=v2.0": [
+    ".NETStandard,Version=v2.1": [
+      "FindAFriend >= 1.0.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -196,16 +212,20 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netstandard2.0"
+        "netstandard2.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
-          "projectReferences": {}
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "projectReferences": {
+            "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj": {
+              "projectPath": "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -215,8 +235,8 @@
       }
     },
     "frameworks": {
-      "netstandard2.0": {
-        "targetAlias": "netstandard2.0",
+      "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
         "dependencies": {
           "NETStandard.Library": {
             "suppressParent": "All",
@@ -238,5 +258,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project FindAFriend is not compatible with netstandard2.1 (.NETStandard,Version=v2.1). Project FindAFriend supports: net5.0 (.NETCoreApp,Version=v5.0)",
+      "libraryId": "FindAFriend",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.1"
+      ]
+    }
+  ]
 }

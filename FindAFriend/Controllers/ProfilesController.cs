@@ -21,15 +21,32 @@ namespace FindAFriend.Controllers
         }
 
         // GET: Profiles
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             return View(await _context.Profile.ToListAsync());
-        }
+        }*/
 
         // GET: Profiles/Details/5
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(int? id)
         {
-            string userID = User.Identity.Name; 
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var profile = await _context.Profile
+                .FirstOrDefaultAsync(m => m.ProfileID == id);
+            if (profile == null)
+            {
+                return NotFound();
+            }
+
+            return View(profile);
+        }
+
+        public async Task<IActionResult> MyDetails()
+        {
+            string userID = User.Identity.Name;
             if (userID == null)
             {
                 return View("Create");
@@ -155,6 +172,19 @@ namespace FindAFriend.Controllers
         public bool ProfileExistsWithUserID(string userID)
         {
             return _context.Profile.Any(e => e.UserID == userID);
+        }
+        public ActionResult Index(string searchName)
+        {
+
+            var profiles = from pr in _context.Profile select pr;
+
+            if (!String.IsNullOrEmpty(searchName))
+            {
+                profiles = profiles.Where(c => c.Name.Contains(searchName));
+            }
+            List<Profile> profilesList = profiles.ToList();
+
+            return View(profilesList);
         }
     }
 }
