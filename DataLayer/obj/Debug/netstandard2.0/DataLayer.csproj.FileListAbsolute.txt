@@ -1,9 +1,0 @@
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\bin\Debug\netstandard2.0\DataLayer.deps.json
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\bin\Debug\netstandard2.0\DataLayer.dll
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\bin\Debug\netstandard2.0\DataLayer.pdb
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\obj\Debug\netstandard2.0\DataLayer.csprojAssemblyReference.cache
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\obj\Debug\netstandard2.0\DataLayer.AssemblyInfoInputs.cache
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\obj\Debug\netstandard2.0\DataLayer.AssemblyInfo.cs
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\obj\Debug\netstandard2.0\DataLayer.csproj.CoreCompileInputs.cache
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\obj\Debug\netstandard2.0\DataLayer.dll
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\DataLayer\obj\Debug\netstandard2.0\DataLayer.pdb
