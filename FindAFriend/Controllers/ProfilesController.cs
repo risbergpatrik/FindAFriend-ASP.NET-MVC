@@ -186,5 +186,6 @@ namespace FindAFriend.Controllers
 
             return View(profilesList);
         }
+
     }
 }

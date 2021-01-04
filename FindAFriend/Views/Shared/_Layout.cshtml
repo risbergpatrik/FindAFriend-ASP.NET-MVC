@@ -21,7 +21,7 @@
                     {
                         <p>
                             Name  : @Html.TextBox("SearchName")<br />
-                            <input type="submit" value="Search" />
+                            <input type="submit" value="Search" asp-area="" asp-controller="Profiles" asp-action="Index">
                         </p>
                     }
                     <ul class="navbar-nav flex-grow-1">

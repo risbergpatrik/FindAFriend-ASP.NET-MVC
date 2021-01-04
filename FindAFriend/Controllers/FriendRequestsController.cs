@@ -54,14 +54,22 @@ namespace FindAFriend.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RequestID,Sender,Recipient")] FriendRequests friendRequests)
+        public async Task<IActionResult> Create([Bind("RequestID,Sender,Recipient")] FriendRequests friendRequests, string id)
         {
+            Profile Recipient = _context.Profile.Single(e => e.UserID == id);
+            TempData["msg"] = Recipient.Name + "?";
             if (ModelState.IsValid)
             {
+                
+                friendRequests.Sender = User.Identity.Name;
+                friendRequests.Recipient = id;
                 _context.Add(friendRequests);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
+
+
             return View(friendRequests);
         }
 

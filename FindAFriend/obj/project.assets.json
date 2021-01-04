@@ -11,6 +11,9 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "jQuery/3.5.1": {
+        "type": "package"
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/5.0.1": {
         "type": "package",
         "compile": {
@@ -2355,6 +2358,29 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "jQuery/3.5.1": {
+      "sha512": "ji6sm/AI0vjASXAA/AG9Yf5ypALAqIDXFFKPHMAnFL8kp3xqULIWhACjg/OXZP88C56frYlIej2nrdBnhTMYQQ==",
+      "type": "package",
+      "path": "jquery/3.5.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery-3.5.1-vsdoc.js",
+        "Content/Scripts/jquery-3.5.1.js",
+        "Content/Scripts/jquery-3.5.1.min.js",
+        "Content/Scripts/jquery-3.5.1.min.map",
+        "Content/Scripts/jquery-3.5.1.slim.js",
+        "Content/Scripts/jquery-3.5.1.slim.min.js",
+        "Content/Scripts/jquery-3.5.1.slim.min.map",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-3.5.1.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jquery.3.5.1.nupkg.sha512",
+        "jquery.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.1": {
@@ -7876,23 +7902,24 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.1",
       "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.1",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.1",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.1"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.1",
+      "jQuery >= 3.5.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\risbe\\.nuget\\packages\\": {}
+    "C:\\Users\\danie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
+      "projectUniqueName": "C:\\Users\\danie\\Source\\Repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
       "projectName": "FindAFriend",
-      "projectPath": "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
-      "packagesPath": "C:\\Users\\risbe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\obj\\",
+      "projectPath": "C:\\Users\\danie\\Source\\Repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\danie\\Source\\Repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\risbe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7949,6 +7976,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[5.0.1, )"
+          },
+          "jQuery": {
+            "target": "Package",
+            "version": "[3.5.1, )"
           }
         },
         "imports": [
