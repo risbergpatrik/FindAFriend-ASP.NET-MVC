@@ -14,7 +14,9 @@ namespace FindAFriend.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public FriendRequestsController(ApplicationDbContext context)
+        public static Profile CurrentRecipient { get; set; }
+
+    public FriendRequestsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -44,8 +46,10 @@ namespace FindAFriend.Controllers
         }
 
         // GET: FriendRequests/Create
-        public IActionResult Create()
+        public IActionResult Create(string id)
         {
+            Profile Recipient = _context.Profile.Single(e => e.UserID == id);
+            CurrentRecipient = Recipient;
             return View();
         }
 
@@ -57,7 +61,6 @@ namespace FindAFriend.Controllers
         public async Task<IActionResult> Create([Bind("RequestID,Sender,Recipient")] FriendRequests friendRequests, string id)
         {
             Profile Recipient = _context.Profile.Single(e => e.UserID == id);
-            TempData["msg"] = Recipient.Name + "?";
             if (ModelState.IsValid)
             {
                 

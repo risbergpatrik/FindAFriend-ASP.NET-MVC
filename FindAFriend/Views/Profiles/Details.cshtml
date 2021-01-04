@@ -1,4 +1,6 @@
-﻿@model FindAFriend.Models.Profile
+﻿@using FindAFriend.Controllers;
+
+@model FindAFriend.Models.Profile
 
 @{
     ViewData["Title"] = "Details";
@@ -49,5 +51,5 @@
     </dl>
 </div>
 <div>
-    
+    <a class="nav-link text-dark" asp-route-id="@FriendRequestsController.CurrentRecipient.UserID" asp-area="" asp-controller="FriendRequests" asp-action="Create">Skicka Vänförfrågan</a>
 </div>
