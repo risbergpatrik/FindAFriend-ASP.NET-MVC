@@ -40,7 +40,7 @@ namespace FindAFriend.Controllers
             {
                 return NotFound();
             }
-            FriendRequestsController.CurrentRecipient = profile;
+            FriendRequestsController.TargetProfile = profile;
 
             return View(profile);
         }

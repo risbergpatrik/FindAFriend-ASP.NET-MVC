@@ -14,7 +14,7 @@ namespace FindAFriend.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public static Profile CurrentRecipient { get; set; }
+        public static Profile TargetProfile { get; set; }
 
     public FriendRequestsController(ApplicationDbContext context)
         {
@@ -24,7 +24,7 @@ namespace FindAFriend.Controllers
         // GET: FriendRequests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.FriendRequests.ToListAsync());
+            return View(await _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToListAsync());
         }
 
         // GET: FriendRequests/Details/5
@@ -49,7 +49,7 @@ namespace FindAFriend.Controllers
         public IActionResult Create(string id)
         {
             Profile Recipient = _context.Profile.Single(e => e.UserID == id);
-            CurrentRecipient = Recipient;
+            TargetProfile = Recipient;
             return View();
         }
 
@@ -141,7 +141,8 @@ namespace FindAFriend.Controllers
             {
                 return NotFound();
             }
-
+            TargetProfile = _context.Profile.FirstOrDefault(p => p.UserID == friendRequests.Sender);
+      
             return View(friendRequests);
         }
 

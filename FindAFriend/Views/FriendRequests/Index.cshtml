@@ -4,20 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Dina Vänförfrågningar!</h3>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Sender)
+                <!----@Html.DisplayNameFor(model => model.Sender)-->Avsändare
             </th>
-            <th>
+            <!----<th>
                 @Html.DisplayNameFor(model => model.Recipient)
-            </th>
+            </th>-->
             <th></th>
         </tr>
     </thead>
@@ -27,13 +25,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Sender)
             </td>
-            <td>
+            <!----<td>
                 @Html.DisplayFor(modelItem => item.Recipient)
-            </td>
+            </td>-->
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RequestID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RequestID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RequestID">Delete</a>
+                <a asp-action="" asp-route-id="@item.RequestID">Acceptera</a> |
+                <a asp-action="Delete" asp-route-id="@item.RequestID">Avböj</a>
             </td>
         </tr>
 }
