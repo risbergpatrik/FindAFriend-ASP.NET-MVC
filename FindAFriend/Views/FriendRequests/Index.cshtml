@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.Recipient)
             </td>-->
             <td>
-                <a asp-action="" asp-route-id="@item.RequestID">Acceptera</a> |
+                <a asp-controller="Friends" asp-action="Create" asp-route-id="@item.RequestID">Acceptera</a> |
                 <a asp-action="Delete" asp-route-id="@item.RequestID">Avböj</a>
             </td>
         </tr>

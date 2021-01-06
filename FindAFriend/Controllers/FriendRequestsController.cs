@@ -15,6 +15,7 @@ namespace FindAFriend.Controllers
         private readonly ApplicationDbContext _context;
 
         public static Profile TargetProfile { get; set; }
+        public static int RequestCount { get; set; }
 
     public FriendRequestsController(ApplicationDbContext context)
         {
@@ -24,7 +25,9 @@ namespace FindAFriend.Controllers
         // GET: FriendRequests
         public async Task<IActionResult> Index()
         {
+            HowManyRequests();
             return View(await _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToListAsync());
+            
         }
 
         // GET: FriendRequests/Details/5
@@ -70,8 +73,6 @@ namespace FindAFriend.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            
-
 
             return View(friendRequests);
         }
@@ -161,5 +162,12 @@ namespace FindAFriend.Controllers
         {
             return _context.FriendRequests.Any(e => e.RequestID == id);
         }
+        public void HowManyRequests()
+        {
+            List<FriendRequests> lista = _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToList();
+            int countish = lista.Count;
+            RequestCount = countish;
+        }
+        
     }
 }

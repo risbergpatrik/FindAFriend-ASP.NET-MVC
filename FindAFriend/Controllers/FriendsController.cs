@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FindAFriend.Data;
 using FindAFriend.Models;
+using FindAFriend.Controllers;
 
 namespace FindAFriend.Controllers
 {
@@ -22,7 +23,13 @@ namespace FindAFriend.Controllers
         // GET: Friends
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Friends.ToListAsync());
+            List<Friends> kompisar = _context.Friends.Where(f => f.User.Equals(User.Identity.Name)).ToList();
+            List<Friends> merKompisar = _context.Friends.Where(f => f.FriendWith.Equals(User.Identity.Name)).ToList();
+            foreach(Friends kompis in merKompisar)
+            {
+                kompisar.Add(kompis);
+            }
+            return View(kompisar);
         }
 
         // GET: Friends/Details/5
@@ -44,8 +51,11 @@ namespace FindAFriend.Controllers
         }
 
         // GET: Friends/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+            FriendRequests friendRequest = _context.FriendRequests.FirstOrDefault(fr => fr.RequestID == id);
+            Profile requestSender = _context.Profile.FirstOrDefault(p => p.UserID == friendRequest.Sender);
+            FriendRequestsController.TargetProfile = requestSender;
             return View();
         }
 
@@ -58,6 +68,8 @@ namespace FindAFriend.Controllers
         {
             if (ModelState.IsValid)
             {
+                friends.User = User.Identity.Name;
+                friends.FriendWith = FriendRequestsController.TargetProfile.UserID;
                 _context.Add(friends);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

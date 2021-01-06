@@ -20,6 +20,7 @@ namespace FindAFriend.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
