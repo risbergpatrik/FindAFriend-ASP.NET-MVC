@@ -1,9 +1,24 @@
-﻿@{
+@using Microsoft.AspNetCore.Identity;
+@{
     ViewData["Title"] = "Home Page";
 }
-
+@{ if (User.Identity.IsAuthenticated)
+    {
 <div class="text-center">
-    <h1 class="display-4">Hej kompis!</h1>
+    <h1 class="display-4">Hej Inloggade kompis!</h1>
+    <h1 class="display-4">@User.Identity.Name</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    
+
 </div>
+    }
+
+    else
+    {
+<div class="text-center">
+    <h1 class="display-4">Hej Utloggade kompis!</h1>
+    <h1 class="display-4">Du suger!</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+</div>
+        }
+    }
