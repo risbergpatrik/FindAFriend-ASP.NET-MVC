@@ -11,7 +11,7 @@ using FindAFriend.Controllers;
 
 namespace FindAFriend.Controllers
 {
-    public class FriendsController : Controller
+    public class FriendsController : AuthenticationController
     {
         private readonly ApplicationDbContext _context;
 
@@ -21,14 +21,11 @@ namespace FindAFriend.Controllers
         }
 
         // GET: Friends
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             List<Friends> kompisar = _context.Friends.Where(f => f.User.Equals(User.Identity.Name)).ToList();
             List<Friends> merKompisar = _context.Friends.Where(f => f.FriendWith.Equals(User.Identity.Name)).ToList();
-            foreach(Friends kompis in merKompisar)
-            {
-                kompisar.Add(kompis);
-            }
+            kompisar.AddRange(merKompisar);
             return View(kompisar);
         }
 

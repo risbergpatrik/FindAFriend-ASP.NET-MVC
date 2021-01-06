@@ -11,7 +11,7 @@ using FindAFriend.Models;
 
 namespace FindAFriend.Controllers
 {
-    public class ProfilesController : Controller
+    public class ProfilesController : AuthenticationController
     {
         private readonly ApplicationDbContext _context;
 

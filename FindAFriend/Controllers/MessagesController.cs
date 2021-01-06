@@ -10,7 +10,7 @@ using FindAFriend.Models;
 
 namespace FindAFriend.Controllers
 {
-    public class MessagesController : Controller
+    public class MessagesController : AuthenticationController
     {
         private readonly ApplicationDbContext _context;
 
