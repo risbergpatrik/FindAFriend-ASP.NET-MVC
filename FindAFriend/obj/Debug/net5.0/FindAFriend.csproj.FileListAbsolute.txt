@@ -958,3 +958,4 @@ C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0
 C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Profiles\Index.cshtml.g.cs
 C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Profiles\MyDetails.cshtml.g.cs
 C:\Users\danie\Source\Repos\FindAFriend-ASP.NET-MVC\FindAFriend\bin\Debug\net5.0\web.config
+C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Profiles\FriendDetails.cshtml.g.cs

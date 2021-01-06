@@ -34,9 +34,8 @@
                 @Html.DisplayFor(modelItem => item.FriendWith)
             </td>-->
             <td>
-                <a asp-action="Edit" asp-route-id="@item.FriendshipID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FriendshipID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FriendshipID">Delete</a>
+                <a asp-controller="Profiles" asp-action="FriendDetails" asp-route-id="@item.User">Se Profil</a> |
+                <a asp-action="Delete" asp-route-id="@item.FriendshipID">Ta bort vän</a>
             </td>
                     
                 

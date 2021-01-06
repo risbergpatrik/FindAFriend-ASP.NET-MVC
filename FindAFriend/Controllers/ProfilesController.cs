@@ -44,6 +44,23 @@ namespace FindAFriend.Controllers
 
             return View(profile);
         }
+        public async Task<IActionResult> FriendDetails(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var profile = await _context.Profile
+                .FirstOrDefaultAsync(m => m.UserID == id);
+            if (profile == null)
+            {
+                return NotFound();
+            }
+            FriendRequestsController.TargetProfile = profile;
+
+            return View(profile);
+        }
 
         public async Task<IActionResult> MyDetails()
         {
