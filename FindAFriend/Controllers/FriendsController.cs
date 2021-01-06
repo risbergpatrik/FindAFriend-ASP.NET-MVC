@@ -68,6 +68,17 @@ namespace FindAFriend.Controllers
                 friends.User = User.Identity.Name;
                 friends.FriendWith = FriendRequestsController.TargetProfile.UserID;
                 _context.Add(friends);
+                foreach (FriendRequests request in _context.FriendRequests)
+                {
+                    if (_context.FriendRequests.FirstOrDefault(fr => fr.Sender == friends.User) == request && _context.FriendRequests.FirstOrDefault(fr => fr.Recipient == friends.FriendWith) == request)
+                    {
+                        _context.FriendRequests.Remove(request);
+                    }
+                    else if (_context.FriendRequests.FirstOrDefault(fr => fr.Sender == friends.FriendWith) == request && _context.FriendRequests.FirstOrDefault(fr => fr.Recipient == friends.User) == request)
+                    {
+                        _context.FriendRequests.Remove(request);
+                    }
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

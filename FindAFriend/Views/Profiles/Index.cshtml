@@ -1,14 +1,7 @@
 ﻿@model IEnumerable<FindAFriend.Models.Profile>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -28,25 +21,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Birthday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>|
-                <a asp-action="Details" asp-route-id="@item.ProfileID">Se Profil </a>
-                <a class="nav-link text-dark" asp-route-id="@item.UserID" asp-area="" asp-controller="FriendRequests" asp-action="Create">Skicka Vänförfrågan</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Birthday)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.City)
+    </td>
+    <td>
+        |
+        <a asp-action="Details" asp-route-id="@item.ProfileID">Se Profil </a>
+        <a class="nav-link text-dark" asp-route-id="@item.UserID" asp-area="" asp-controller="FriendRequests" asp-action="Create">Skicka Vänförfrågan</a>
+    </td>
+</tr>}
     </tbody>
 </table>
