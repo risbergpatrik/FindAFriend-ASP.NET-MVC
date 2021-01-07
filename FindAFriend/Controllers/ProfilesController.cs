@@ -90,7 +90,7 @@ namespace FindAFriend.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProfileID,Name,Birthday,Image,Description,City,UserID")] Profile profile)
+        public async Task<IActionResult> Create([Bind("ProfileID,Name,Birthday,Description,City,UserID")] Profile profile)
         {
 
             if (ModelState.IsValid)
@@ -124,7 +124,7 @@ namespace FindAFriend.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProfileID,Name,Birthday,Image,Description,City,UserID")] Profile profile)
+        public async Task<IActionResult> Edit(int id, [Bind("ProfileID,Name,Birthday,Description,City,UserID")] Profile profile)
         {
             if (id != profile.ProfileID)
             {

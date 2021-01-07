@@ -12,7 +12,6 @@ namespace FindAFriend.Models
         public virtual int ProfileID { get; set; }
         public virtual String Name { get; set; }
         public virtual DateTime Birthday { get; set; }
-        public virtual byte[] Image { get; set; }
         public virtual String Description { get; set; }
         public virtual String City { get; set; }
         public virtual String UserID { get; set; }

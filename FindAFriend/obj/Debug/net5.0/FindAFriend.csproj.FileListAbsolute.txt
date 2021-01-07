@@ -960,3 +960,8 @@ C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0
 C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\FindAFriend.csproj.CopyComplete
 C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\FindAFriend.genruntimeconfig.cache
 C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\FindAFriend.csprojAssemblyReference.cache
+C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\ImageModels\Create.cshtml.g.cs
+C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\ImageModels\Delete.cshtml.g.cs
+C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\ImageModels\Details.cshtml.g.cs
+C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\ImageModels\Edit.cshtml.g.cs
+C:\Users\risbe\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\ImageModels\Index.cshtml.g.cs

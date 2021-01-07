@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FindAFriend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201228112457_[MessageMigration]")]
-    partial class MessageMigration
+    [Migration("20210107121713_ImageModel")]
+    partial class ImageModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,6 +57,24 @@ namespace FindAFriend.Data.Migrations
                     b.ToTable("Friends");
                 });
 
+            modelBuilder.Entity("FindAFriend.Models.ImageModel", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ImageExtension")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ImageId");
+
+                    b.ToTable("ImageModel");
+                });
+
             modelBuilder.Entity("FindAFriend.Models.Message", b =>
                 {
                     b.Property<int>("ID")
@@ -96,6 +114,9 @@ namespace FindAFriend.Data.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

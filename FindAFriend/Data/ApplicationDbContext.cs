@@ -17,5 +17,6 @@ namespace FindAFriend.Data
         public DbSet<FindAFriend.Models.FriendRequests> FriendRequests { get; set; }
         public DbSet<FindAFriend.Models.Friends> Friends { get; set; }
         public DbSet<FindAFriend.Models.Message> Message { get; set; }
+        public DbSet<FindAFriend.Models.ImageModel> ImageModel { get; set; }
     }
 }

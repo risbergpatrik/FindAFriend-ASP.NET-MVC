@@ -55,6 +55,24 @@ namespace FindAFriend.Data.Migrations
                     b.ToTable("Friends");
                 });
 
+            modelBuilder.Entity("FindAFriend.Models.ImageModel", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ImageExtension")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ImageId");
+
+                    b.ToTable("ImageModel");
+                });
+
             modelBuilder.Entity("FindAFriend.Models.Message", b =>
                 {
                     b.Property<int>("ID")
@@ -97,9 +115,6 @@ namespace FindAFriend.Data.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("UserID")
                         .HasColumnType("nvarchar(max)");
