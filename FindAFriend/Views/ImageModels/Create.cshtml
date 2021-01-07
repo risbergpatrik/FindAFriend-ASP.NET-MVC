@@ -3,29 +3,38 @@
 @{
     ViewData["Title"] = "Create";
 }
+@{ 
+    string picExtension = "";
+    if(ViewBag.Extension != null)
+    {
+        picExtension = ViewBag.Extension;
+    }
 
-<h1>Create</h1>
 
-<h4>ImageModel</h4>
+}
+
+<h4>Byt Profilbild</h4>
 <hr />
+<div>
+    <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%" />
+</div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
                 <input asp-for="ImageFile" accept="image/png,image/jpg,image/jpeg" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Ändra profilbild" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="MyDetails" asp-controller="Profiles">Tillbaka till din profil</a>
 </div>
 
 @section Scripts {

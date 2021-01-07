@@ -76,6 +76,14 @@ namespace FindAFriend.Controllers
             {
                 return View("Create");
             }
+
+            ImageModel profilePic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == userID + i.ImageExtension);
+            if (profilePic != null)
+            {
+                string profilePicExtension = profilePic.ImageExtension;
+                ViewData["extension"] = profilePicExtension;
+                
+            }
             return View(profile);
         }
 

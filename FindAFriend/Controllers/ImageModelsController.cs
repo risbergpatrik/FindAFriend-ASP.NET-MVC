@@ -51,6 +51,15 @@ namespace FindAFriend.Controllers
         // GET: ImageModels/Create
         public IActionResult Create()
         {
+            ImageModel oldProfilepic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == User.Identity.Name + i.ImageExtension);
+            if (oldProfilepic != null)
+            {
+                _context.ImageModel.Remove(oldProfilepic);
+                ViewData["extension"] = oldProfilepic.ImageExtension;
+            }
+            
+
+            //ViewData["extension"] = TempData["extension"];
             return View();
         }
 
@@ -75,10 +84,21 @@ namespace FindAFriend.Controllers
                 {
                     await imageModel.ImageFile.CopyToAsync(fileStream);
                 }
-
+              
+                    ImageModel oldProfilepic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == User.Identity.Name + i.ImageExtension);
+                    if (oldProfilepic != null)
+                    {
+                        _context.ImageModel.Remove(oldProfilepic);
+                        /*if (System.IO.File.Exists())
+                        {
+                        System.IO.File.Delete();
+                        }*/
+                    }
+                
+                
                 _context.Add(imageModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(imageModel);
         }

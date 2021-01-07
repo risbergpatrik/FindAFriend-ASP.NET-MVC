@@ -3,9 +3,8 @@
 @{
     ViewData["Title"] = "Details";
 }
-
 <div>
-    <img src="@("~/Images/"+ Model.UserID + ".jpg")" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%" />
+    <img src="@("~/Images/"+ Model.UserID + ViewBag.Extension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%" />
 </div>
 <div>
     <hr />
@@ -44,4 +43,5 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ProfileID">Redigera Profil</a> |
+    <a asp-action="Create" asp-controller="ImageModels">Profilbild</a>
 </div>

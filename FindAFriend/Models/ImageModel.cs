@@ -17,7 +17,6 @@ namespace FindAFriend.Models
         [Column(TypeName = "nvarchar(50)")]
         public string UserEmail { get; set; }
         [NotMapped]
-        [DisplayName("UploadFile")]
         public IFormFile ImageFile { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string ImageExtension { get; set; }
