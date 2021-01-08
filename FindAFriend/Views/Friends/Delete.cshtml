@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "Delete";
+    if (Model.FriendWith == User.Identity.Name)
+    {
+        Model.FriendWith = Model.User;
+    }
 }
 
 <h3>Är du säker på att du vill ta bort din kompis?</h3>

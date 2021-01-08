@@ -69,8 +69,24 @@ namespace FindAFriend.Controllers
                 
                 friendRequests.Sender = User.Identity.Name;
                 friendRequests.Recipient = id;
-                _context.Add(friendRequests);
-                await _context.SaveChangesAsync();
+
+                bool notEligibleFriends = false;
+
+                FriendRequests friendRequest = _context.FriendRequests.FirstOrDefault(fr => fr.Recipient == id && fr.Sender == User.Identity.Name);
+
+                Friends friend = _context.Friends.FirstOrDefault(f => f.User == User.Identity.Name && f.FriendWith == id);
+                Friends friends = _context.Friends.FirstOrDefault(f => f.User == id && f.FriendWith == User.Identity.Name);
+
+                if (friendRequest != null || friend != null || friends != null)
+                {
+                    notEligibleFriends = true;
+                }
+                if(notEligibleFriends == false)
+                {
+                    _context.Add(friendRequests);
+                    await _context.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 

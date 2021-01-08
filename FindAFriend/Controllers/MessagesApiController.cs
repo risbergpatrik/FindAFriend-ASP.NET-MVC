@@ -25,9 +25,18 @@ namespace FindAFriend.Controllers
 
         // GET: api/MessagesApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Message>>> GetMessage()
+        [Route("loadmessages")]
+        public async Task<ActionResult<IEnumerable<Message>>> GetMessage(string profileUser)
         {
-            return await _context.Message.ToListAsync();
+            List<Message> meddelanden = _context.Message.Where(m => m.Recipient == profileUser).ToList();
+            List<Message> meddelandenAttDisplaya = new List<Message>();
+            foreach(Message m in meddelanden)
+            {
+                Profile profile = _context.Profile.FirstOrDefault(p => p.UserID == m.Sender);
+                m.Sender = profile.Name;
+                meddelandenAttDisplaya.Add(m);
+            }
+            return meddelandenAttDisplaya;
         }
 
         // GET: api/MessagesApi/5
@@ -93,6 +102,7 @@ namespace FindAFriend.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMessage", new { id = newMessage.ID }, newMessage);
+            
         }
 
         // DELETE: api/MessagesApi/5

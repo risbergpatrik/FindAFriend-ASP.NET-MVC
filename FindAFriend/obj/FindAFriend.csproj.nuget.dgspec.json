@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj": {}
+    "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj": {
+    "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
+        "projectUniqueName": "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
         "projectName": "FindAFriend",
-        "projectPath": "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
-        "packagesPath": "C:\\Users\\risbe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\risbe\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\obj\\",
+        "projectPath": "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
+        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\risbe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
