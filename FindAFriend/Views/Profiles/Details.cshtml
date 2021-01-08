@@ -7,14 +7,10 @@
     ViewData["Title"] = "Details";
 }
 
-
-<div> <!--Vi hårdkodar just nu in ".png" i vår bildpath...-->
-    <img src="@("~/Images/"+ Model.UserID + ".png")" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
-    
-    <!--Hatobjekt nr1 (tänkt att skriva ut rätt extension men skiten klagar på objektreferenser)
-        @**@ ImageModelsController.GetFileExtension(Model.UserID)
-    -->
+<div>
+    <img src="@("~/Images/"+ Model.UserID + ViewBag.Extension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
 </div>
+
 <div>
     <hr />
     <dl class="row">

@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<div>
+    <img src="@("~/Images/" + Model.UserID + ViewBag.Extension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
+</div>
 <div>
     <hr />
     <dl class="row">
@@ -38,4 +40,33 @@
             @Html.DisplayFor(model => model.UserID)
         </dd>
     </dl>
+    <form>
+        <div>
+            <div class="form-group">
+                <input id ="meddelandeText" type="text">
+            </div>
+            <input id="send" type="submit" value="Skicka Meddelande" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
+@section Scripts {
+
+    <script>
+      $(() =>
+         $("#send").click((e) => {
+             e.preventDefault();
+
+            $.ajax({
+                url: "/api/MessagesApi/postmessage",
+                type: "POST",
+                data: JSON.stringify({
+                Text: $("#meddelandeText").val(), Recipient: "@Model.UserID" }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: alert("sent")
+            });
+         })
+      );
+    </script>
+<partial name="_ValidationScriptsPartial" />
+}

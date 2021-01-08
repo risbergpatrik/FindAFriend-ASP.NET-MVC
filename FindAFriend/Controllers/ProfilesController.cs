@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FindAFriend.Data;
 using FindAFriend.Models;
-
+using System.Net.Http;
 
 namespace FindAFriend.Controllers
 {
@@ -41,6 +41,13 @@ namespace FindAFriend.Controllers
                 return NotFound();
             }
             FriendRequestsController.TargetProfile = profile;
+            ImageModel profilePic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == profile.UserID + i.ImageExtension);
+            if (profilePic != null)
+            {
+                string profilePicExtension = profilePic.ImageExtension;
+                ViewData["extension"] = profilePicExtension;
+            }
+
 
             return View(profile);
         }
@@ -58,7 +65,12 @@ namespace FindAFriend.Controllers
                 return NotFound();
             }
             FriendRequestsController.TargetProfile = profile;
-
+            ImageModel profilePic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == profile.UserID + i.ImageExtension);
+            if (profilePic != null)
+            {
+                string profilePicExtension = profilePic.ImageExtension;
+                ViewData["extension"] = profilePicExtension;
+            }
             return View(profile);
         }
 
@@ -84,7 +96,7 @@ namespace FindAFriend.Controllers
                 ViewData["extension"] = profilePicExtension;
                 
             }
-            return View(profile);
+            return View (profile);
         }
 
         // GET: Profiles/Create
@@ -212,6 +224,5 @@ namespace FindAFriend.Controllers
 
             return View(profilesList);
         }
-
     }
 }
