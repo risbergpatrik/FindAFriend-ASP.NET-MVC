@@ -1,7 +1,5 @@
 ﻿@using FindAFriend.Controllers;
-@{ 
-    
-}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,43 +18,49 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @using (Html.BeginForm())
+                @{if (AuthenticationController.HasProfile)
                     {
-                        <p>
-                            Name  : @Html.TextBox("SearchName")<br />
-                            <input type="submit" value="Search" asp-area="" asp-controller="Profiles" asp-action="Index">
-                        </p>
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            @using (Html.BeginForm())
+                            {
+                                <p>
+                                    Name  : @Html.TextBox("SearchName")<br />
+                                    <input type="submit" value="Search" asp-area="" asp-controller="Profiles" asp-action="Index">
+                                </p>
+                            }
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="Index">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="Index">Message</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="FriendRequests" asp-action="Index">FriendRequests (@FriendRequestsController.RequestCount)</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Friends" asp-action="Index">Friends</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="MyDetails">Min Profil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ImageModels" asp-action="Index">Bilder</a>
+                                </li>
+                            </ul>
+                            <partial name="_LoginPartial" />
+                        </div>
                     }
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="Index">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="Index">Message</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="FriendRequests" asp-action="Index">FriendRequests (@FriendRequestsController.RequestCount)</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Friends" asp-action="Index">Friends</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="MyDetails">Min Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="ImageModels" asp-action="Index">Bilder</a>
-                    </li>
-
-
-
-
-                </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+                    else
+                    {
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    }
+                }
             </div>
         </nav>
     </header>

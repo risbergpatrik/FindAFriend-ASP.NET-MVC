@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FindAFriend.Data;
 using FindAFriend.Models;
-using System.Net.Http;
+
 
 namespace FindAFriend.Controllers
 {
@@ -47,8 +47,6 @@ namespace FindAFriend.Controllers
                 string profilePicExtension = profilePic.ImageExtension;
                 ViewData["extension"] = profilePicExtension;
             }
-
-
             return View(profile);
         }
         public async Task<IActionResult> FriendDetails(string id)
@@ -94,9 +92,9 @@ namespace FindAFriend.Controllers
             {
                 string profilePicExtension = profilePic.ImageExtension;
                 ViewData["extension"] = profilePicExtension;
-                
+
             }
-            return View (profile);
+            return View(profile);
         }
 
         // GET: Profiles/Create
@@ -118,7 +116,8 @@ namespace FindAFriend.Controllers
                 profile.UserID = User.Identity.Name;
                 _context.Add(profile);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                AuthenticationController.HasProfile = true;
+                return RedirectToAction(nameof(MyDetails));
             }
             return View(profile);
         }
@@ -224,5 +223,6 @@ namespace FindAFriend.Controllers
 
             return View(profilesList);
         }
+
     }
 }
