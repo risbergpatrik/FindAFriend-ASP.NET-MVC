@@ -1,4 +1,5 @@
-﻿@model FindAFriend.Models.ImageModel
+﻿@using FindAFriend.Controllers;
+@model FindAFriend.Models.ImageModel
 
 @{
     ViewData["Title"] = "Create";
@@ -16,7 +17,20 @@
 <h4>Byt Profilbild</h4>
 <hr />
 <div>
-    <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%" />
+    <!--Version 1-->
+    <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
+
+    <!--Version 2
+    @{
+        if (System.IO.File.Exists("~/Images/" + User.Identity.Name + picExtension))
+        {
+            <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
+        }
+        else
+        {
+            <img src="@("~/Images/default.jpg")" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
+        }
+    }-->
 </div>
 <div class="row">
     <div class="col-md-4">

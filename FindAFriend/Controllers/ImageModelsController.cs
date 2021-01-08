@@ -89,10 +89,11 @@ namespace FindAFriend.Controllers
                     if (oldProfilepic != null)
                     {
                         _context.ImageModel.Remove(oldProfilepic);
-                        /*if (System.IO.File.Exists())
+                        var fileLocation = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", oldProfilepic.UserEmail);
+                        if (System.IO.File.Exists(fileLocation))
                         {
-                        System.IO.File.Delete();
-                        }*/
+                        System.IO.File.Delete(fileLocation);
+                        }
                     }
                 
                 
@@ -186,6 +187,38 @@ namespace FindAFriend.Controllers
         private bool ImageModelExists(int id)
         {
             return _context.ImageModel.Any(e => e.ImageId == id);
+        }
+        
+        //KOLLA SÅ VACKER!!
+        public string GetFileExtension(string profileID)
+        {
+            ImageModel[] imageList = _context.ImageModel.ToArray();
+            string iExtension = "";
+            foreach (ImageModel image in imageList)
+            {
+                if (image.UserEmail.Contains(profileID))
+                {
+                    iExtension = image.ImageExtension;
+                    break;
+                }
+            }
+            return iExtension;
+        }
+
+        //FUNKAR INTE, MEN VORE NICE OM DEN GJORDE DET! - RETURNAR ALLTID FALSE
+        public static string DefaultProfile(string CurrentPicPath)
+        {
+            string ProfilePicPath;
+            var fileLocation = "https://localhost:44335/wwwroot/Images/" + CurrentPicPath;
+            if (System.IO.File.Exists(fileLocation))
+            {
+                ProfilePicPath = CurrentPicPath;
+            }
+            else
+            {
+                ProfilePicPath = "~/Images/default.jpg";
+            }
+            return ProfilePicPath;
         }
     }
 }

@@ -1,10 +1,32 @@
-﻿@model FindAFriend.Models.Profile
+﻿@using FindAFriend.Controllers;
+@using System.IO;
+@model FindAFriend.Models.Profile
 
 @{
     ViewData["Title"] = "Details";
 }
+@{
+    string picExtension = "";
+    if (ViewBag.Extension != null)
+    {
+        picExtension = ViewBag.Extension;
+    }
+}
 <div>
-    <img src="@("~/Images/"+ Model.UserID + ViewBag.Extension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%" />
+    <!--Version 1-->
+    <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
+    
+    <!--Version 2
+    @{
+        if (System.IO.File.Exists("~/Images/" + User.Identity.Name + picExtension))
+        {
+            <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
+        }
+        else
+        {
+            <img src="@("~/Images/default.jpg")" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
+        }
+    }-->
 </div>
 <div>
     <hr />
