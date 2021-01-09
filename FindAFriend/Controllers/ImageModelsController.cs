@@ -72,6 +72,16 @@ namespace FindAFriend.Controllers
         {
             if (ModelState.IsValid)
             {
+                ImageModel oldProfilepic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == User.Identity.Name + i.ImageExtension);
+                if (oldProfilepic != null)
+                {
+                    _context.ImageModel.Remove(oldProfilepic);
+                    var fileLocation = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", oldProfilepic.UserEmail);
+                    if (System.IO.File.Exists(fileLocation))
+                    {
+                        System.IO.File.Delete(fileLocation);
+                    }
+                }
                 //Sparar en bild i wwwRoot/Images
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string userEmail = User.Identity.Name;
@@ -85,16 +95,7 @@ namespace FindAFriend.Controllers
                     await imageModel.ImageFile.CopyToAsync(fileStream);
                 }
               
-                    ImageModel oldProfilepic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == User.Identity.Name + i.ImageExtension);
-                    if (oldProfilepic != null)
-                    {
-                        _context.ImageModel.Remove(oldProfilepic);
-                        var fileLocation = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", oldProfilepic.UserEmail);
-                        if (System.IO.File.Exists(fileLocation))
-                        {
-                        System.IO.File.Delete(fileLocation);
-                        }
-                    }
+                    
                 
                 
                 _context.Add(imageModel);

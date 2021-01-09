@@ -4,21 +4,75 @@
 }
 @{ if (User.Identity.IsAuthenticated)
     {
-<div class="text-center">
-    <h1 class="display-4">Hej Inloggade kompis!</h1>
-    <h1 class="display-4">@User.Identity.Name</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
-</div>
+        <div class="text-center">
+            <h1 class="display-4">Hej Inloggade kompis!</h1>
+            <h1 class="display-4">@User.Identity.Name</h1>
+        </div>
     }
 
     else
     {
-<div class="text-center">
-    <h1 class="display-4">Hej Utloggade kompis!</h1>
-    <h1 class="display-4">Du suger!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
-</div>
-        }
+        <div class="text-center">
+            <h1 class="display-4">Hej Utloggade kompis!</h1>
+            <h1 class="display-4">Du suger!</h1>
+        </div>
     }
+}
+
+
+@section Scripts {
+
+    <script>
+        $(() =>
+            $(document).ready((e) => {
+             $.ajax({
+                 url: "/api/ProfilesApi/loadprofiles",
+                 type: "GET",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data)
+                 {
+                     var jsonString = JSON.stringify(data);
+                     var jsonObjects = JSON.parse(jsonString);
+                     if (jsonObjects.length < 3) {
+                         $.ajax({
+                             url: "/api/ProfilesApi/postprofile",
+                             type: "POST",
+                             data: JSON.stringify({
+                                 Name: "Girugamesh", Description: "Kawaii-desu", City: "Trollgrottan", UserID: "Girugamesh@hotmail.com"
+                             }),
+                             contentType: "application/json; charset=utf-8",
+                             dataType: "json"
+                         });
+                         $.ajax({
+                             url: "/api/ProfilesApi/postprofile",
+                             type: "POST",
+                             data: JSON.stringify({
+                                 Name: "BingBongMan", Description: "Studsar och stajlar", City: "Sproing", UserID: "BingBong@hotmail.com"
+                             }),
+                             contentType: "application/json; charset=utf-8",
+                             dataType: "json"
+                         });
+                         $.ajax({
+                             url: "/api/ProfilesApi/postprofile",
+                             type: "POST",
+                             data: JSON.stringify({
+                                 Name: "Harry", Description: "En vanlig karl", City: "Rundsparksdalen", UserID: "Harry@hotmail.com"
+                             }),
+                             contentType: "application/json; charset=utf-8",
+                             dataType: "json"
+                         });
+                         alert("profiler skapades")
+                     }
+                     else
+                     {
+                         alert("inget skapades");
+                     }
+                 }
+            });
+         })
+      );
+    </script>
+
+}
+
