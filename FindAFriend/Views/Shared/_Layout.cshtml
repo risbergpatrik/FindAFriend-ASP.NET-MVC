@@ -88,10 +88,14 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
-                        var counterString = "(" + data.length + ")";
-                        var itemtoReplaceContentOf = $('#requestCounter');
-                        itemtoReplaceContentOf.html(counterString);
-                        newcontent.appendTo(itemtoReplaceContentOf);
+                        if (data.length > 0)
+                        {
+                            var counterString = "(" + data.length + ")";
+                            var itemtoReplaceContentOf = $('#requestCounter');
+                            itemtoReplaceContentOf.html(counterString);
+                            newcontent.appendTo(itemtoReplaceContentOf);
+                        }
+                       
                     }
                 });
             })
@@ -107,10 +111,12 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
-                            var counterString = "(" + data.length + ")";
-                            var itemtoReplaceContentOf = $('#requestCounter');
-                            itemtoReplaceContentOf.html(counterString);
-                            newcontent.appendTo(itemtoReplaceContentOf);
+                            if (data.length > 0) {
+                                var counterString = "(" + data.length + ")";
+                                var itemtoReplaceContentOf = $('#requestCounter');
+                                itemtoReplaceContentOf.html(counterString);
+                                newcontent.appendTo(itemtoReplaceContentOf);
+                            }
                         }
                     });
                 })
