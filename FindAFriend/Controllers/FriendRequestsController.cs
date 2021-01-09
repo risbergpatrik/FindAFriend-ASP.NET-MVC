@@ -25,9 +25,7 @@ namespace FindAFriend.Controllers
         // GET: FriendRequests
         public async Task<IActionResult> Index()
         {
-            HowManyRequests();
-            return View(await _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToListAsync());
-            
+            return View(await _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToListAsync());  
         }
 
         // GET: FriendRequests/Details/5
@@ -177,12 +175,6 @@ namespace FindAFriend.Controllers
         private bool FriendRequestsExists(int id)
         {
             return _context.FriendRequests.Any(e => e.RequestID == id);
-        }
-        public void HowManyRequests()
-        {
-            List<FriendRequests> lista = _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToList();
-            int countish = lista.Count;
-            RequestCount = countish;
         }
         
     }

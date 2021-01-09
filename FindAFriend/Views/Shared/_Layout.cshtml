@@ -1,5 +1,6 @@
 ﻿@using FindAFriend.Controllers;
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="Index">Message</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="FriendRequests" asp-action="Index">FriendRequests (@FriendRequestsController.RequestCount)</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="FriendRequests" asp-action="Index">FriendRequests <span id="requestCounter"></span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Friends" asp-action="Index">Friends</a>
@@ -78,6 +79,44 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(() =>
+            $(document).ready((e) => {
+                $.ajax({
+                    url: "/api/FriendRequestsApi/getrequestcount",
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var counterString = "(" + data.length + ")";
+                        var itemtoReplaceContentOf = $('#requestCounter');
+                        itemtoReplaceContentOf.html(counterString);
+                        newcontent.appendTo(itemtoReplaceContentOf);
+                    }
+                });
+            })
+        );
+    </script>
+    <script>
+        setInterval(function () {
+            $(() =>
+                $(document).ready((e) => {
+                    $.ajax({
+                        url: "/api/FriendRequestsApi/getrequestcount",
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            var counterString = "(" + data.length + ")";
+                            var itemtoReplaceContentOf = $('#requestCounter');
+                            itemtoReplaceContentOf.html(counterString);
+                            newcontent.appendTo(itemtoReplaceContentOf);
+                        }
+                    });
+                })
+            );}, 3000);
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
