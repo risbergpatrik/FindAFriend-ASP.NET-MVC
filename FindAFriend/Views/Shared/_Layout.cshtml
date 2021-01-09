@@ -40,7 +40,7 @@
                                     @using (Html.BeginForm())
                                     {
 
-                                        <p>Namn: @Html.TextBox("SearchName")<span><input type="submit" value="Sök" asp-area="" asp-controller="Profiles" asp-action="Index"></span></p>
+                                        <a class="nav-link text-dark">@Html.TextBox("SearchName")<span><input type="submit" value="Sök" asp-area="" asp-controller="Profiles" asp-action="Index"></span></a>
                                     }
                                 </li>
                                 

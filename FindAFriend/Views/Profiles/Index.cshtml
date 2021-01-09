@@ -23,24 +23,39 @@
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Birthday)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.City)
-    </td>
-    <td>
-        |
-        <a asp-action="Details" asp-route-id="@item.ProfileID">Se Profil </a>
-        <a class="nav-link text-dark" asp-route-id="@item.UserID" asp-area="" asp-controller="FriendRequests" asp-action="Create">Skicka Vänförfrågan</a>
-    </td>
-</tr>}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birthday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @{ if (item.UserID == User.Identity.Name)
+                        {
+                            <a asp-action="MyDetails" asp-route-id="@item.ProfileID">Se Min Profil </a>
+                        }
+                        //Möjlig utökning på funktionaliteten
+                        /*
+                        else if (item.UserID *********************)
+                        {
+                            <a asp-action="FriendDetails" asp-route-id="@item.ProfileID">Se Profil </a>
+                        }
+                        */
+                        else
+                        {
+                            <a asp-action="Details" asp-route-id="@item.ProfileID">Se Profil </a>
+                            <a class="nav-link text-dark" asp-route-id="@item.UserID" asp-area="" asp-controller="FriendRequests" asp-action="Create">Skicka Vänförfrågan</a>
+                        }
+                    }
+                </td>
+            </tr>
+}
     </tbody>
 </table>
