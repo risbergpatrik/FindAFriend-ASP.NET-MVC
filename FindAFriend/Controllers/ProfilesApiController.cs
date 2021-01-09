@@ -58,7 +58,7 @@ namespace FindAFriend.Controllers
 
             ImageModel newImageModel = new ImageModel
             {
-                UserEmail = imageModel.UserEmail,
+                UserEmail = imageModel.UserEmail + imageModel.ImageExtension,
                 ImageExtension = imageModel.ImageExtension
             };
 

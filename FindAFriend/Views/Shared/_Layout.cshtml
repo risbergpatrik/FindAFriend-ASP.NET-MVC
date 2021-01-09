@@ -22,35 +22,28 @@
                 @{if (AuthenticationController.HasProfile)
                     {
                         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                            @using (Html.BeginForm())
-                            {
-                                <p>
-                                    Name  : @Html.TextBox("SearchName")<br />
-                                    <input type="submit" value="Search" asp-area="" asp-controller="Profiles" asp-action="Index">
-                                </p>
-                            }
+                            
                             <ul class="navbar-nav flex-grow-1">
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="Index">Profiler</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="Index">Profile</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="FriendRequests" asp-action="Index">Vänförfrågningar <span id="requestCounter"></span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="Index">Message</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="FriendRequests" asp-action="Index">FriendRequests <span id="requestCounter"></span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Friends" asp-action="Index">Friends</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Friends" asp-action="Index">Vänner</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="MyDetails">Min Profil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="ImageModels" asp-action="Index">Bilder</a>
+                                    @using (Html.BeginForm())
+                                    {
+
+                                        <p>Namn: @Html.TextBox("SearchName")<span><input type="submit" value="Sök" asp-area="" asp-controller="Profiles" asp-action="Index"></span></p>
+                                    }
                                 </li>
+                                
                             </ul>
                             <partial name="_LoginPartial" />
                         </div>

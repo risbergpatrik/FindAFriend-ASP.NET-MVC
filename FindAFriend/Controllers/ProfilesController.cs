@@ -168,7 +168,7 @@ namespace FindAFriend.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(MyDetails));
             }
             return View(profile);
         }

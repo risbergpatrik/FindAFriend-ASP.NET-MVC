@@ -33,8 +33,7 @@
                  success: function (data)
                  {
                      var jsonString = JSON.stringify(data);
-                     var jsonObjects = JSON.parse(jsonString);
-                     if (jsonObjects.length < 3) {
+                     if (!jsonString.includes("Girugamesh@hotmail.com")) {
                          $.ajax({
                              url: "/api/ProfilesApi/postprofile",
                              type: "POST",
@@ -45,14 +44,38 @@
                              dataType: "json"
                          });
                          $.ajax({
-                             url: "/api/ProfilesApi/postprofile",
+                             url: "/api/ProfilesApi/postimages",
                              type: "POST",
                              data: JSON.stringify({
-                                 Name: "BingBongMan", Description: "Studsar och stajlar", City: "Sproing", UserID: "BingBong@hotmail.com"
+                                 ImageExtension: ".png", UserEmail: "Girugamesh@hotmail.com"
                              }),
                              contentType: "application/json; charset=utf-8",
                              dataType: "json"
                          });
+                     }
+                         if (!jsonString.includes("BingBong@hotmail.com")) {
+                             $.ajax({
+                                 url: "/api/ProfilesApi/postprofile",
+                                 type: "POST",
+                                 data: JSON.stringify({
+                                     Name: "BingBongMan", Description: "Studsar och stajlar", City: "Sproing", UserID: "BingBong@hotmail.com"
+                                 }),
+                                 contentType: "application/json; charset=utf-8",
+                                 dataType: "json"
+                             });
+                         
+                         $.ajax({
+                             url: "/api/ProfilesApi/postimages",
+                             type: "POST",
+                             data: JSON.stringify({
+                                 ImageExtension: ".jpg", UserEmail: "BingBong@hotmail.com"
+                             }),
+                             contentType: "application/json; charset=utf-8",
+                             dataType: "json"
+                         });
+                         }
+                         
+                         if (!jsonString.includes("Harry@hotmail.com")) {
                          $.ajax({
                              url: "/api/ProfilesApi/postprofile",
                              type: "POST",
@@ -62,11 +85,15 @@
                              contentType: "application/json; charset=utf-8",
                              dataType: "json"
                          });
-                         alert("profiler skapades")
-                     }
-                     else
-                     {
-                         alert("inget skapades");
+                         $.ajax({
+                             url: "/api/ProfilesApi/postimages",
+                             type: "POST",
+                             data: JSON.stringify({
+                                 ImageExtension: ".jpeg", UserEmail: "Harry@hotmail.com"
+                             }),
+                             contentType: "application/json; charset=utf-8",
+                             dataType: "json"
+                         });                       
                      }
                  }
             });
