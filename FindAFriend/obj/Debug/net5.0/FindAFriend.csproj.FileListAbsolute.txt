@@ -380,7 +380,6 @@ C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\danie\source\repos\FindAFriend-ASP.NET-MVC\FindAFriend\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs

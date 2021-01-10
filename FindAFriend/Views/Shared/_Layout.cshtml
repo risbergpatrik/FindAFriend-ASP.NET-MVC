@@ -1,4 +1,9 @@
 ﻿@using FindAFriend.Controllers;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
 
 
 <!DOCTYPE html>
@@ -22,7 +27,7 @@
                 @{if (AuthenticationController.HasProfile)
                     {
                         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                            
+
                             <ul class="navbar-nav flex-grow-1">
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="Index">Profiler</a>
@@ -40,18 +45,60 @@
                                     @using (Html.BeginForm())
                                     {
 
-                                        <a class="nav-link text-dark">@Html.TextBox("SearchName")<span><input type="submit" value="Sök" asp-area="" asp-controller="Profiles" asp-action="Index"></span></a>
+                                        <a class="nav-link text-dark"><input id="SearchName" name="SearchName" type="search" pattern="^[aA-zZ​]{0,20}$" title="Sök på ett användarnamn med färre än 20 tecken." autocomplete="off" /><span><input type="submit" value="Sök" asp-area="" asp-controller="Profiles" asp-action="Index"></span></a>
                                     }
                                 </li>
-                                
+
                             </ul>
-                            <partial name="_LoginPartial" />
+                            <ul class="navbar-nav">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li class="nav-item">
+                                        <a id="hejGrej" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                        </form>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                    </li>
+                                }
+                            </ul>
                         </div>
                     }
                     else
                     {
                         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                            <partial name="_LoginPartial" />
+                            <ul class="navbar-nav">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                        </form>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                    </li>
+                                }
+                            </ul>
                         </div>
                     }
                 }
@@ -68,6 +115,7 @@
         <div class="container">
             &copy; 2020 - FindAFriend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+        <p id="email" type="hidden">@User.Identity.Name</p>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -81,14 +129,13 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
-                        if (data.length > 0)
-                        {
+                        if (data.length > 0) {
                             var counterString = "(" + data.length + ")";
                             var itemtoReplaceContentOf = $('#requestCounter');
                             itemtoReplaceContentOf.html(counterString);
                             newcontent.appendTo(itemtoReplaceContentOf);
                         }
-                       
+
                     }
                 });
             })
@@ -113,7 +160,42 @@
                         }
                     });
                 })
-            );}, 3000);
+            );
+        }, 3000);
+    </script>
+    <script>
+        $(() =>
+            $(document).ready((e) => {
+                $.ajax({
+                    url: "/api/ProfilesApi/loadprofiles",
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        var jsonString = JSON.stringify(data);
+                        var jsonObjects = JSON.parse(jsonString);
+                        for (var i = 0; i < jsonObjects.length; i++)
+                        {
+                            var obj = jsonObjects[i];
+                            var userEmail = $("#email").text();
+                            if (obj["userID"] == userEmail)
+                            {
+                                var profileName = obj["name"];
+                                if (profileName.includes(" "))
+                                {
+                                    profileName = profileName.split(" ")[0];
+                                }   
+                            }
+                        }
+                        $("#hejGrej").text("Hej " + profileName + "!");
+                    },
+                    error: function (error) {
+                        alert("ja");
+                    }
+                });
+            })
+        );
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

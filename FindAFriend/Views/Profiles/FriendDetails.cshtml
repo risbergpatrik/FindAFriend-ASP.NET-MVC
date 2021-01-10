@@ -22,31 +22,31 @@
         <div style="display : table-cell; padding : 0; float : left;">
             <dl class="row" style="margin-left : auto;">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Name)
+                    Namn
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Name)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Birthday)
+                    Födelsedag
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Birthday)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Description)
+                    Beskrivning
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.City)
+                    Stad
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.City)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.UserID)
+                    Email
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.UserID)
@@ -88,7 +88,8 @@
                      for (var i = 0; i < getMessageList.length; i++) {
                          var obj = getMessageList[i];
                          var timeSent = obj["timeSent"].toString();
-                         var element = '<dt>' + obj["sender"] + ' : ' + timeSent + '</dt>' + '<br/>' + '<dd>' + obj["text"] + '</dd>' + '<br/>';
+                         timeSent = timeSent.slice(0, 10) + " - " + timeSent.slice(11, 16);
+                         var element = '<hr/>' + '<dt>' + obj["sender"] + ' : ' + timeSent + '</dt>' + '<br/>' + '<dd>' + obj["text"] + '</dd>' + '<br/>';
                          meddelandeLista.append(element);
                      }
                 },
@@ -112,7 +113,9 @@
                 Text: $("#meddelandeText").val(), Recipient: "@Model.UserID" }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: alert("Meddelandet har skickats! Ladda om sidan!")
+                success: function (data) {
+                    location.reload();
+                }
             });
          })
       );

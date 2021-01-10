@@ -10,7 +10,8 @@ namespace FindAFriend.Models
     {
         [Key]
         public virtual int ID { get; set; }
-
+        [Required(ErrorMessage = "Textfält är tomt")]
+        [StringLength(50)]
         public virtual string Text { get; set; }
         public virtual String Sender { get; set; }
         public virtual String Recipient { get; set; }

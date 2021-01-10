@@ -37,31 +37,31 @@
                     <a asp-action="Edit" asp-route-id="@Model.ProfileID">Profil</a>
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Name)
+                    Namn
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Name)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Birthday)
+                    Födelsedag
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Birthday)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Description)
+                    Beskrivning
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.City)
+                    Stad
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.City)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.UserID)
+                    Email
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.UserID)
@@ -128,7 +128,9 @@
                 Text: $("#meddelandeText").val(), Recipient: "@Model.UserID" }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: alert("Meddelandet har skickats! Ladda om sidan!")
+                success: function (data) {
+                    location.reload();
+                }
             });
          })
       );
