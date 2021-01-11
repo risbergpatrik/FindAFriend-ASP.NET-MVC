@@ -22,6 +22,5 @@ namespace FindAFriend.Models
         [StringLength(20, ErrorMessage ="Flytta till en stad med ett kortare namn. (mindre än 20 tecken gärna)")]
         public virtual String City { get; set; }
         public virtual String UserID { get; set; }
-
     }
 }

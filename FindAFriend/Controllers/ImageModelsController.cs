@@ -17,14 +17,12 @@ namespace FindAFriend.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
         
-
         public ImageModelsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
 
-        
         public IActionResult Create()
         {
             ImageModel oldProfilepic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == User.Identity.Name + i.ImageExtension);
@@ -33,16 +31,17 @@ namespace FindAFriend.Controllers
                 _context.ImageModel.Remove(oldProfilepic);
                 ViewData["extension"] = oldProfilepic.ImageExtension;
             }
-            
             return View();
         }
         
+        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ImageId, ImageFile")] ImageModel imageModel)
         {
             if (ModelState.IsValid)
             {
+                //När användaren laddar upp en ny profilbild tas den gamla profilbilden bort
                 ImageModel oldProfilepic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == User.Identity.Name + i.ImageExtension);
                 if (oldProfilepic != null)
                 {
@@ -70,6 +69,7 @@ namespace FindAFriend.Controllers
                             await imageModel.ImageFile.CopyToAsync(fileStream);
                         }
 
+                        //Lägger till bilden i databasen
                         _context.Add(imageModel);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Create));
@@ -79,7 +79,6 @@ namespace FindAFriend.Controllers
                         return RedirectToAction(nameof(Create));
                     }
                 }
-
                 catch(Exception e)
                 {
                     return RedirectToAction(nameof(Create));

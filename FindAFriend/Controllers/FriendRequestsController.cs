@@ -14,6 +14,7 @@ namespace FindAFriend.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        //TargetProfile är en global variabel som lagrar det profilobjekt som applikationen ibland behöver
         public static Profile TargetProfile { get; set; }
         public static int RequestCount { get; set; }
 
@@ -22,13 +23,12 @@ namespace FindAFriend.Controllers
             _context = context;
         }
 
-        // GET: FriendRequests
+        //Hämtar alla vänförfrågningar där den inloggade användaren står som Recipient
         public async Task<IActionResult> Index()
         {
             return View(await _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToListAsync());  
         }
 
-        // GET: FriendRequests/Create
         public IActionResult Create(string id)
         {
             Profile Recipient = _context.Profile.Single(e => e.UserID == id);
@@ -36,9 +36,7 @@ namespace FindAFriend.Controllers
             return View();
         }
 
-        // POST: FriendRequests/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Innan ett FriendRequest-objekt lagras i databasen kontrolleras det att en likadan request finns och att de två användarna inte redan är vänner
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RequestID,Sender,Recipient")] FriendRequests friendRequests, string id)
@@ -73,10 +71,6 @@ namespace FindAFriend.Controllers
             return View(friendRequests);
         }
 
-
-
-
-        // GET: FriendRequests/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -95,7 +89,6 @@ namespace FindAFriend.Controllers
             return View(friendRequests);
         }
 
-        // POST: FriendRequests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -104,11 +97,6 @@ namespace FindAFriend.Controllers
             _context.FriendRequests.Remove(friendRequests);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool FriendRequestsExists(int id)
-        {
-            return _context.FriendRequests.Any(e => e.RequestID == id);
         }
         
     }

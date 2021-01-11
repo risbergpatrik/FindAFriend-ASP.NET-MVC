@@ -21,7 +21,6 @@ namespace FindAFriend.Controllers
             _context = context;
         }
 
-
         [HttpGet]
         [Route("loadprofiles")]
         public async Task<ActionResult<IEnumerable<Profile>>> GetProfiles()
@@ -30,7 +29,8 @@ namespace FindAFriend.Controllers
             return profiles;
         }
 
-
+        //Ett profil-objekt skickas med ajax från vyn och lagras i databasen
+        //Den här metoden används för att generera exempelanvändare om dom saknas i databasen
         [HttpPost]
         [Route("postprofile")]
         public async Task<ActionResult<Profile>> PostProfile(Profile profile)
@@ -51,6 +51,7 @@ namespace FindAFriend.Controllers
             return CreatedAtAction("GetProfile", new { id = newProfile.ProfileID }, newProfile);
         }
 
+        //Postar bilder till exempelanvändarna i databasen
         [HttpPost]
         [Route("postimages")]
         public async Task<ActionResult<Profile>> PostImages(ImageModel imageModel)
@@ -68,6 +69,7 @@ namespace FindAFriend.Controllers
             return CreatedAtAction("GetImageModel", new { id = newImageModel.ImageId }, newImageModel);
         }
 
+        //Hämtar alla bilder i databasen
         [HttpGet]
         [Route("loadimages")]
         public async Task<ActionResult<IEnumerable<ImageModel>>> GetImages()
@@ -75,6 +77,5 @@ namespace FindAFriend.Controllers
             List<ImageModel> images = _context.ImageModel.ToList();
             return images;
         }
-
     }
 }

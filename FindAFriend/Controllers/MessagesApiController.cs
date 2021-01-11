@@ -23,6 +23,7 @@ namespace FindAFriend.Controllers
             _context = context;
         }
 
+        //Hämtar meddelanden där mottagaren är den aktuella profilen som visas
         [HttpGet]
         [Route("loadmessages")]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessage(string profileUser)
@@ -38,6 +39,9 @@ namespace FindAFriend.Controllers
             return meddelandenAttDisplaya;
         }
 
+        //Postar ett nytt meddelande i databasen
+        //TimeSent sätts till DateTime.Now när meddelandet skickas
+        //Recipient och Text hämtas ifrån vyn
         [HttpPost]
         [Route("postmessage")]
         public async Task<ActionResult<Message>> PostMessage(Message message)

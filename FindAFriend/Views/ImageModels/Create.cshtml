@@ -10,27 +10,12 @@
     {
         picExtension = ViewBag.Extension;
     }
-
-
 }
 
 <h4>Byt Profilbild</h4>
 <hr />
 <div>
-    <!--Version 1-->
     <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
-
-    <!--Version 2
-    @{
-        if (System.IO.File.Exists("~/Images/" + User.Identity.Name + picExtension))
-        {
-            <img src="@("~/Images/"+ User.Identity.Name + picExtension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
-        }
-        else
-        {
-            <img src="@("~/Images/default.jpg")" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
-        }
-    }-->
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -46,7 +31,6 @@
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="MyDetails" asp-controller="Profiles">Tillbaka till din profil</a>
 </div>

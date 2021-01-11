@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FindAFriend.Controllers
 {
+    //Används för att se till att ickeinloggade användare bara har tillgång till startsidan.
     [Authorize]
     public class AuthenticationController : Controller
     {

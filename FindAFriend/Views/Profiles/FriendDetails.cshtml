@@ -3,17 +3,6 @@
 @{
     ViewData["Title"] = "Details";
 }
-<!--Version 2
-    @{
-        if (System.IO.File.Exists("~/Images/" + Model.UserID + ViewBag.Extension))
-        {
-            <img src="@("~/Images/"+ Model.UserID + ViewBag.Extension)" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
-        }
-        else
-        {
-            <img src="@("~/Images/default.jpg")" asp-append-version="true" width="250px" height="250px" style="border-radius : 50%; object-fit: cover" />
-        }
-    }-->
 <div>
     <div style="display : table;">
         <div style="display : table-cell;">
@@ -31,7 +20,14 @@
                     Födelsedag
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Birthday)
+                    @{var birthday = Model.Birthday.ToString();
+                        int index = birthday.IndexOf(" ");
+                        if (index > 0)
+                        {
+                            birthday = birthday.Substring(0, index);
+                        }
+                    }
+                    @birthday
                 </dd>
                 <dt class="col-sm-2">
                     Beskrivning
@@ -69,9 +65,10 @@
 @section Scripts {
 
     <script>
+    //Alla meddelande som ska visas på profilväggen hämtas från databasen och läggs in i htmlen
+    //Meddelandena visas i omvänd ordning för att det senaste postade meddelandet ska visas längst upp på sidan
         $(() =>
             $(document).ready((e) => {
-
 
              $.ajax({
                  url: "/api/MessagesApi/loadmessages",
@@ -100,8 +97,8 @@
          })
       );
     </script>
-
     <script>
+    //När ett meddelande postas så sparas det i databasen och fönstret laddas om för att det nya meddelandet ska visas
       $(() =>
           $("#send").click((e) => {
              e.preventDefault();

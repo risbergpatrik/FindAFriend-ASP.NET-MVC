@@ -11,11 +11,10 @@ namespace FindAFriend.Models
         [Key]
         public virtual int ID { get; set; }
         [Required(ErrorMessage = "Textfält är tomt")]
-        [StringLength(50)]
+        [StringLength(60, ErrorMessage = "Håll dig under 60 tecken!")]
         public virtual string Text { get; set; }
         public virtual String Sender { get; set; }
         public virtual String Recipient { get; set; }
-
         public virtual DateTime TimeSent { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace FindAFriend.Controllers
         {
             _context = context;
         }
+        //Returnerar en detaljerad vy för den angedda profilen
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -33,7 +34,10 @@ namespace FindAFriend.Controllers
             {
                 return NotFound();
             }
+
             FriendRequestsController.TargetProfile = profile;
+
+            //Hämtar ut profilbilden som hör till profilen som ska visas
             ImageModel profilePic = _context.ImageModel.FirstOrDefault(i => i.UserEmail == profile.UserID + i.ImageExtension);
             if (profilePic != null)
             {
@@ -42,6 +46,7 @@ namespace FindAFriend.Controllers
             }
             return View(profile);
         }
+        //Returnerar en detaljerad vy för den angedda profilen när man går in på den från vänlistan
         public async Task<IActionResult> FriendDetails(string id)
         {
             if (id == null)
@@ -65,6 +70,7 @@ namespace FindAFriend.Controllers
             return View(profile);
         }
 
+        //Returnerar vyen för ens egna profil
         public async Task<IActionResult> MyDetails()
         {
             string userID = User.Identity.Name;
@@ -85,7 +91,6 @@ namespace FindAFriend.Controllers
             {
                 string profilePicExtension = profilePic.ImageExtension;
                 ViewData["extension"] = profilePicExtension;
-
             }
             return View(profile);
         }
@@ -106,7 +111,7 @@ namespace FindAFriend.Controllers
                 _context.Add(profile);
                 await _context.SaveChangesAsync();
                 AuthenticationController.HasProfile = true;
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction(nameof(MyDetails));
             }
             return View(profile);
         }
@@ -162,10 +167,9 @@ namespace FindAFriend.Controllers
         {
             return _context.Profile.Any(e => e.ProfileID == id);
         }
-        public bool ProfileExistsWithUserID(string userID)
-        {
-            return _context.Profile.Any(e => e.UserID == userID);
-        }
+        
+        //Returnerar en vy för alla profiler i databasen
+        //Kallas också via sökfunktionen, hämtar då alla profiler med ett namn som innehåller söksträngen
         public ActionResult Index(string searchName)
         {
             var profiles = from pr in _context.Profile select pr;
@@ -178,6 +182,5 @@ namespace FindAFriend.Controllers
 
             return View(profilesList);
         }
-
     }
 }

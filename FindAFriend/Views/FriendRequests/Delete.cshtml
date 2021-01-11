@@ -5,8 +5,6 @@
     ViewData["Title"] = "Delete";
 }
 
-
-
 <h3>Är du säker på att ni inte ska bli kompisar?</h3>
 <div>
     <hr />
@@ -15,16 +13,8 @@
             Avsändare: @FriendRequestsController.TargetProfile.Name
         </dt>
         <dd class = "col-sm-10">
-            
         </dd>
-        <!----<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipient)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Recipient)
-        </dd>-->
     </dl>
-    
     <form asp-action="Delete">
         <input type="hidden" asp-for="RequestID" />
         <input type="submit" value="Avböj" class="btn btn-danger" /> |

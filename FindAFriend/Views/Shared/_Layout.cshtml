@@ -3,9 +3,6 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,11 +43,9 @@
                                 <li class="nav-item">
                                     @using (Html.BeginForm())
                                     {
-
                                         <a class="nav-link text-dark"><input id="SearchName" name="SearchName" type="search" pattern="^[aA-zZ​]{0,20}$" title="Sök på ett användarnamn med färre än 20 tecken." autocomplete="off" /><span><input type="submit" value="Sök" asp-area="" asp-controller="Profiles" asp-action="Index"></span></a>
                                     }
                                 </li>
-
                             </ul>
                             <ul class="navbar-nav">
                                 @if (SignInManager.IsSignedIn(User))
@@ -112,7 +107,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - DateTime
@@ -123,6 +117,9 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
+        //Hämtar alla aktiva vänförfrågningar som användaren har
+        //Vänförfrågningarna räknas
+        //Antalet inkommande vänförfrågningar visas i headern.
         $(() =>
             $(document).ready((e) => {
                 $.ajax({
@@ -137,13 +134,13 @@
                             itemtoReplaceContentOf.html(counterString);
                             newcontent.appendTo(itemtoReplaceContentOf);
                         }
-
                     }
                 });
             })
         );
     </script>
     <script>
+        //Scriptet uppdaterar inkommande vänförfrågningar var tredje sekund så att använderen har tillgång till informationen oavsett vart på sidan hen befinner sig
         setInterval(function () {
             $(() =>
                 $(document).ready((e) => {
@@ -166,6 +163,7 @@
         }, 3000);
     </script>
     <script>
+        //Hämtar ut den inloggade användarens förnamn och visar en hälsning i headern
         $(() =>
             $(document).ready((e) => {
                 $.ajax({

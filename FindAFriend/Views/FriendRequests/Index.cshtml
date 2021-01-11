@@ -1,22 +1,15 @@
 ﻿@model IEnumerable<FindAFriend.Models.FriendRequests>
-
 @{
     ViewData["Title"] = "Index";
 }
 
 <h3>Dina Vänförfrågningar!</h3>
-
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                <!----@Html.DisplayNameFor(model => model.Sender)-->Avsändare
+                Avsändare
             </th>
-            <!----<th>
-                @Html.DisplayNameFor(model => model.Recipient)
-            </th>-->
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -25,9 +18,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Sender)
             </td>
-            <!----<td>
-                @Html.DisplayFor(modelItem => item.Recipient)
-            </td>-->
             <td>
                 <a asp-controller="Friends" asp-action="Create" asp-route-id="@item.RequestID">Acceptera</a> |
                 <a asp-action="Delete" asp-route-id="@item.RequestID">Avböj</a>

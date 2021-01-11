@@ -21,6 +21,8 @@ namespace FindAFriend.Controllers
             _context = context;
         }
 
+        //När HomeIndex visas görs en kontroll som kollar om den inloggade användaren har en profil
+        //Finns det en profil registrerad sätts HasProfile till true och alla vyer blir tillgängliga.
         public IActionResult Index()
         {
             try
@@ -41,7 +43,6 @@ namespace FindAFriend.Controllers
                             return RedirectToAction("Create", "Profiles", new { area = "" });
                         }
                     }
-
                 }
             }
             catch (Exception e)
@@ -50,7 +51,6 @@ namespace FindAFriend.Controllers
             }
             return View();
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

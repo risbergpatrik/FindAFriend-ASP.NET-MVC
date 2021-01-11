@@ -28,7 +28,14 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Birthday)
+                    @{var birthday = item.Birthday.ToString();
+                        int index = birthday.IndexOf(" ");
+                        if (index > 0)
+                        {
+                            birthday = birthday.Substring(0, index);
+                        }
+                    }
+                    @birthday
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
@@ -41,7 +48,7 @@
                         {
                             <a asp-action="MyDetails" asp-route-id="@item.ProfileID">Se Min Profil </a>
                         }
-                        
+
                         else
                         {
                             <a asp-action="Details" asp-route-id="@item.ProfileID">Se Profil </a>
@@ -53,4 +60,3 @@
         }
     </tbody>
 </table>
-

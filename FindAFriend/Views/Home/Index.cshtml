@@ -8,7 +8,6 @@
             <h4>Hej Inloggade kompis!</h4>
         </div>
     }
-
     else
     {
         <div class="text-center">
@@ -30,7 +29,6 @@
         <hr />
         <div style="display : table;">
             <div style="display : table-cell;" id="exempelBild1">
-
             </div>
             <div style="display : table-cell; padding : 0; float : left;">
                 <dl class="row" style="margin-left : auto;" id="exempelProfil1">
@@ -40,7 +38,6 @@
         <hr />
         <div style="display : table;">
             <div style="display : table-cell;" id="exempelBild2">
-
             </div>
             <div style="display : table-cell; padding : 0; float : left;">
                 <dl class="row" style="margin-left : auto;" id="exempelProfil2">
@@ -54,6 +51,8 @@
 @section Scripts {
 
     <script>
+        //Ett script som kollar om våra defaultanvändare finns i databasen
+        //Finns inte en av defaultanvändarna postas den till databasen tillsammans med en tillhörande bild
         $(() =>
             $(document).ready((e) => {
                 $.ajax({
@@ -131,6 +130,7 @@
         );
     </script>
     <script>
+        //Hämtar ut alla bilder från databasen
         $(() =>
             $(document).ready((e) => {
                 $.ajax({
@@ -147,6 +147,8 @@
         );
     </script>
     <script>
+        //Hämtar de tre första profilerna i databasen och appendar de i htmlen
+        //Scriptet kollar sen igenom alla bilder som hämtats från databasen och matchar rätt bild med profilen som ska visas
         $(() =>
             $(document).ready((e) => {
                 $.ajax({

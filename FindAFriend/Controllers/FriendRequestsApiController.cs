@@ -21,6 +21,7 @@ namespace FindAFriend.Controllers
             _context = context;
         }
 
+        //Hämtar alla vänförfrågningar där den inloggade användaren står som Recipient
         [HttpGet]
         [Route("getrequestcount")]
         public async Task<ActionResult<IEnumerable<FriendRequests>>> GetFriendRequests()

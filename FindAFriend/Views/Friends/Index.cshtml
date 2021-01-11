@@ -12,10 +12,6 @@
             <th>
                 Dina Vänner
             </th>
-          <!----  <th>
-                @Html.DisplayNameFor(model => model.FriendWith)
-            </th>-->
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -30,15 +26,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.User)
             </td>
-            <!----<td>
-                @Html.DisplayFor(modelItem => item.FriendWith)
-            </td>-->
             <td>
                 <a asp-controller="Profiles" asp-action="FriendDetails" asp-route-id="@item.User">Se Profil</a> |
                 <a asp-action="Delete" asp-route-id="@item.FriendshipID">Ta bort vän</a>
-            </td>
-                    
-                
+            </td>  
         </tr>
 }
     </tbody>

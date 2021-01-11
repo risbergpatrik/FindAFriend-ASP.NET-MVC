@@ -20,17 +20,15 @@ namespace FindAFriend.Controllers
             _context = context;
         }
 
-        // GET: Friends
+        //Returnerar en sammanlagd lista över alla vänskapsrelationer för användaren
         public IActionResult Index()
         {
-            List<Friends> kompisar = _context.Friends.Where(f => f.User.Equals(User.Identity.Name)).ToList();
-            List<Friends> merKompisar = _context.Friends.Where(f => f.FriendWith.Equals(User.Identity.Name)).ToList();
-            kompisar.AddRange(merKompisar);
-            return View(kompisar);
+            List<Friends> kompisListaA = _context.Friends.Where(f => f.User.Equals(User.Identity.Name)).ToList();
+            List<Friends> kompisListaB = _context.Friends.Where(f => f.FriendWith.Equals(User.Identity.Name)).ToList();
+            kompisListaA.AddRange(kompisListaB);
+            return View(kompisListaA);
         }
 
-
-        // GET: Friends/Create
         public IActionResult Create(int id)
         {
             FriendRequests friendRequest = _context.FriendRequests.FirstOrDefault(fr => fr.RequestID == id);
@@ -39,9 +37,7 @@ namespace FindAFriend.Controllers
             return View();
         }
 
-        // POST: Friends/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //När ett nytt Friends-samband läggs till i databasen så tas den associerade FriendRequesten bort
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FriendshipID,User,FriendWith")] Friends friends)
@@ -68,11 +64,6 @@ namespace FindAFriend.Controllers
             return View(friends);
         }
 
-        
-
-        
-
-        // GET: Friends/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -90,7 +81,6 @@ namespace FindAFriend.Controllers
             return View(friends);
         }
 
-        // POST: Friends/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
