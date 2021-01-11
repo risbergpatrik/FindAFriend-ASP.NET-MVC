@@ -5,18 +5,50 @@
 @{ if (User.Identity.IsAuthenticated)
     {
         <div class="text-center">
-            <h1 class="display-4">Hej Inloggade kompis!</h1>
-            <h1 class="display-4">@User.Identity.Name</h1>
+            <h4>Hej Inloggade kompis!</h4>
         </div>
     }
 
     else
     {
         <div class="text-center">
-            <h1 class="display-4">Hej Utloggade kompis!</h1>
-            <h1 class="display-4">Du suger!</h1>
+            <h4>Hej Utloggade kompis!</h4>
+            <h4>Skapa en profil idag!</h4>
         </div>
     }
+    <hr />
+    <div>
+        <div style="display : table;">
+            <div style="display : table-cell;" id="exempelBild0">
+
+            </div>
+            <div style="display : table-cell; padding : 0; float : left;">
+                <dl class="row" style="margin-left : auto;" id="exempelProfil0">
+                </dl>
+            </div>
+        </div>
+        <hr />
+        <div style="display : table;">
+            <div style="display : table-cell;" id="exempelBild1">
+
+            </div>
+            <div style="display : table-cell; padding : 0; float : left;">
+                <dl class="row" style="margin-left : auto;" id="exempelProfil1">
+                </dl>
+            </div>
+        </div>
+        <hr />
+        <div style="display : table;">
+            <div style="display : table-cell;" id="exempelBild2">
+
+            </div>
+            <div style="display : table-cell; padding : 0; float : left;">
+                <dl class="row" style="margin-left : auto;" id="exempelProfil2">
+                </dl>
+            </div>
+        </div>
+    </div>
+    <p hidden id="bildString"></p>
 }
 
 @section Scripts {
@@ -24,81 +56,130 @@
     <script>
         $(() =>
             $(document).ready((e) => {
-             $.ajax({
-                 url: "/api/ProfilesApi/loadprofiles",
-                 type: "GET",
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 success: function (data)
-                 {
-                     var jsonString = JSON.stringify(data);
-                     if (!jsonString.includes("Girugamesh@hotmail.com")) {
-                         $.ajax({
-                             url: "/api/ProfilesApi/postprofile",
-                             type: "POST",
-                             data: JSON.stringify({
-                                 Name: "Girugamesh", Description: "Kawaii-desu", City: "Trollgrottan", UserID: "Girugamesh@hotmail.com"
-                             }),
-                             contentType: "application/json; charset=utf-8",
-                             dataType: "json"
-                         });
-                         $.ajax({
-                             url: "/api/ProfilesApi/postimages",
-                             type: "POST",
-                             data: JSON.stringify({
-                                 ImageExtension: ".png", UserEmail: "Girugamesh@hotmail.com"
-                             }),
-                             contentType: "application/json; charset=utf-8",
-                             dataType: "json"
-                         });
-                     }
-                         if (!jsonString.includes("BingBong@hotmail.com")) {
-                             $.ajax({
-                                 url: "/api/ProfilesApi/postprofile",
-                                 type: "POST",
-                                 data: JSON.stringify({
-                                     Name: "BingBongMan", Description: "Studsar och stajlar", City: "Sproing", UserID: "BingBong@hotmail.com"
-                                 }),
-                                 contentType: "application/json; charset=utf-8",
-                                 dataType: "json"
-                             });
-                         
-                         $.ajax({
-                             url: "/api/ProfilesApi/postimages",
-                             type: "POST",
-                             data: JSON.stringify({
-                                 ImageExtension: ".jpg", UserEmail: "BingBong@hotmail.com"
-                             }),
-                             contentType: "application/json; charset=utf-8",
-                             dataType: "json"
-                         });
-                         }
-                         
-                         if (!jsonString.includes("Harry@hotmail.com")) {
-                         $.ajax({
-                             url: "/api/ProfilesApi/postprofile",
-                             type: "POST",
-                             data: JSON.stringify({
-                                 Name: "Harry", Description: "En vanlig karl", City: "Rundsparksdalen", UserID: "Harry@hotmail.com"
-                             }),
-                             contentType: "application/json; charset=utf-8",
-                             dataType: "json"
-                         });
-                         $.ajax({
-                             url: "/api/ProfilesApi/postimages",
-                             type: "POST",
-                             data: JSON.stringify({
-                                 ImageExtension: ".jpeg", UserEmail: "Harry@hotmail.com"
-                             }),
-                             contentType: "application/json; charset=utf-8",
-                             dataType: "json"
-                         });                       
-                     }
-                 }
-            });
-         })
-      );
+                $.ajax({
+                    url: "/api/ProfilesApi/loadprofiles",
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var jsonString = JSON.stringify(data);
+                        if (!jsonString.includes("anna-andersson@hotmail.com")) {
+                            $.ajax({
+                                url: "/api/ProfilesApi/postprofile",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    Name: "Anna Andersson", Description: "Tredje snabbaste i klassen i mellanstadiet", City: "Karlstad", UserID: "anna-andersson@hotmail.com"
+                                }),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json"
+                            });
+                            $.ajax({
+                                url: "/api/ProfilesApi/postimages",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    ImageExtension: ".png", UserEmail: "anna-andersson@hotmail.com"
+                                }),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json"
+                            });
+                        }
+                        if (!jsonString.includes("kenta-kentsson@hotmail.com")) {
+                            $.ajax({
+                                url: "/api/ProfilesApi/postprofile",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    Name: "Kenta Kentsson", Description: "Studsar och stajlar", City: "Stockholm", UserID: "kenta-kentsson@hotmail.com"
+                                }),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json"
+                            });
+
+                            $.ajax({
+                                url: "/api/ProfilesApi/postimages",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    ImageExtension: ".jpg", UserEmail: "kenta-kentsson@hotmail.com"
+                                }),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json"
+                            });
+                        }
+
+                        if (!jsonString.includes("harry-hermansson@hotmail.com")) {
+                            $.ajax({
+                                url: "/api/ProfilesApi/postprofile",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    Name: "Harry Hermansson", Description: "En vanlig karl", City: "Rundsparksdalen", UserID: "harry-hermansson@hotmail.com"
+                                }),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json"
+                            });
+                            $.ajax({
+                                url: "/api/ProfilesApi/postimages",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    ImageExtension: ".jpeg", UserEmail: "harry-hermansson@hotmail.com"
+                                }),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json"
+                            });
+                        }
+                    }
+                });
+            })
+        );
+    </script>
+    <script>
+        $(() =>
+            $(document).ready((e) => {
+                $.ajax({
+                    url: "/api/ProfilesApi/loadimages",
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var picString = JSON.stringify(data);
+                        $("#bildString").html(picString);
+                    }
+                });
+            })
+        );
+    </script>
+    <script>
+        $(() =>
+            $(document).ready((e) => {
+                $.ajax({
+                    url: "/api/ProfilesApi/loadprofiles",
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        for (var i = 0; i < 3; i++) {
+                            var obj = data[i];
+                            var birthday = obj["birthday"].toString();
+                            birthday = birthday.slice(0, 10) + " - " + birthday.slice(11, 16);
+                            var profilDiv = $('#exempelProfil' + i);
+                            var bildDiv = $('#exempelBild' + i);
+                            var element = '<dt class="col-sm-2">Namn</dt><dd class="col-sm-10">' + obj["name"] + '</dd><dt class="col-sm-2">F&oumldelsedag</dt><dd class="col-sm-10">' + birthday + '</dd><dt class="col-sm-2">Beskrivning</dt><dd class="col-sm-10">' + obj["description"] + '</dd><dt class="col-sm-2">Stad</dt><dd class="col-sm-10">' + obj["city"] + '</dd><dt class="col-sm-2">Email</dt><dd class="col-sm-10">' + obj["userID"] + '</dd>';
+                            profilDiv.append(element);
+
+                            var imageString = $('#bildString').html();
+                            var jsonPics = JSON.parse(imageString);
+                            for (var index = 0; index < jsonPics.length; index++) {
+                                var picObj = jsonPics[index];
+                                if (picObj["userEmail"].includes(obj["userID"])) {
+                                    var picElement = '<img src="../Images/' + picObj["userEmail"] + '" asp-append-version="true" width="175px" height="175px" style="border-radius : 50%; object-fit: cover; float : left;">';
+                                    bildDiv.append(picElement);
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+        );
     </script>
 
 }
+
 

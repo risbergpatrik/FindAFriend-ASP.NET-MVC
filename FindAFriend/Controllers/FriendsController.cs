@@ -29,23 +29,6 @@ namespace FindAFriend.Controllers
             return View(kompisar);
         }
 
-        // GET: Friends/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var friends = await _context.Friends
-                .FirstOrDefaultAsync(m => m.FriendshipID == id);
-            if (friends == null)
-            {
-                return NotFound();
-            }
-
-            return View(friends);
-        }
 
         // GET: Friends/Create
         public IActionResult Create(int id)
@@ -85,56 +68,9 @@ namespace FindAFriend.Controllers
             return View(friends);
         }
 
-        // GET: Friends/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        
 
-            var friends = await _context.Friends.FindAsync(id);
-            if (friends == null)
-            {
-                return NotFound();
-            }
-            return View(friends);
-        }
-
-        // POST: Friends/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FriendshipID,User,FriendWith")] Friends friends)
-        {
-            if (id != friends.FriendshipID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(friends);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FriendsExists(friends.FriendshipID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(friends);
-        }
+        
 
         // GET: Friends/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -163,11 +99,6 @@ namespace FindAFriend.Controllers
             _context.Friends.Remove(friends);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool FriendsExists(int id)
-        {
-            return _context.Friends.Any(e => e.FriendshipID == id);
         }
     }
 }

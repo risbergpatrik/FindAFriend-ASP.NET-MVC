@@ -41,13 +41,7 @@
                         {
                             <a asp-action="MyDetails" asp-route-id="@item.ProfileID">Se Min Profil </a>
                         }
-                        //Möjlig utökning på funktionaliteten
-                        /*
-                        else if (item.UserID *********************)
-                        {
-                            <a asp-action="FriendDetails" asp-route-id="@item.ProfileID">Se Profil </a>
-                        }
-                        */
+                        
                         else
                         {
                             <a asp-action="Details" asp-route-id="@item.ProfileID">Se Profil </a>
@@ -56,6 +50,7 @@
                     }
                 </td>
             </tr>
-}
+        }
     </tbody>
 </table>
+

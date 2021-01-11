@@ -68,5 +68,13 @@ namespace FindAFriend.Controllers
             return CreatedAtAction("GetImageModel", new { id = newImageModel.ImageId }, newImageModel);
         }
 
+        [HttpGet]
+        [Route("loadimages")]
+        public async Task<ActionResult<IEnumerable<ImageModel>>> GetImages()
+        {
+            List<ImageModel> images = _context.ImageModel.ToList();
+            return images;
+        }
+
     }
 }

@@ -28,24 +28,6 @@ namespace FindAFriend.Controllers
             return View(await _context.FriendRequests.Where(fr => fr.Recipient.Equals(User.Identity.Name)).ToListAsync());  
         }
 
-        // GET: FriendRequests/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var friendRequests = await _context.FriendRequests
-                .FirstOrDefaultAsync(m => m.RequestID == id);
-            if (friendRequests == null)
-            {
-                return NotFound();
-            }
-
-            return View(friendRequests);
-        }
-
         // GET: FriendRequests/Create
         public IActionResult Create(string id)
         {
@@ -91,56 +73,8 @@ namespace FindAFriend.Controllers
             return View(friendRequests);
         }
 
-        // GET: FriendRequests/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var friendRequests = await _context.FriendRequests.FindAsync(id);
-            if (friendRequests == null)
-            {
-                return NotFound();
-            }
-            return View(friendRequests);
-        }
 
-        // POST: FriendRequests/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RequestID,Sender,Recipient")] FriendRequests friendRequests)
-        {
-            if (id != friendRequests.RequestID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(friendRequests);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FriendRequestsExists(friendRequests.RequestID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(friendRequests);
-        }
 
         // GET: FriendRequests/Delete/5
         public async Task<IActionResult> Delete(int? id)
