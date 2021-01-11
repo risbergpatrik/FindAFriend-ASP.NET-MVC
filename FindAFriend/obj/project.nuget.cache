@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cmTEsCfLsad8oSi9TfvVgdMvlxZCxYqla5UKjkY8Ze2K0VCsDQDPnNeiVcaK8l87VRH6PtrTETY8D8cgmpC7vQ==",
+  "dgSpecHash": "TChfEvNQkRVPdXBYNw5AuAP0ezWQLjgdbs+U9RjJB/YqYOwSfs+Jy2o1XEutdAuSWvgpSvJaABYUhJHJleWfAA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danie\\source\\repos\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
+  "projectFilePath": "C:\\Users\\danie\\Desktop\\FindAFriend-ASP.NET-MVC\\FindAFriend\\FindAFriend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\jquery\\3.5.1\\jquery.3.5.1.nupkg.sha512",
