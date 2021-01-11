@@ -117,7 +117,7 @@ namespace FindAFriend.Controllers
                 _context.Add(profile);
                 await _context.SaveChangesAsync();
                 AuthenticationController.HasProfile = true;
-                return RedirectToAction(nameof(MyDetails));
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
             return View(profile);
         }

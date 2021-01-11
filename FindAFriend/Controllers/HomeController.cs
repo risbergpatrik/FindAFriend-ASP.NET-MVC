@@ -23,19 +23,30 @@ namespace FindAFriend.Controllers
 
         public IActionResult Index()
         {
-            var profile = _context.Profile
-                .FirstOrDefault(m => m.UserID == User.Identity.Name);
-            if (profile != null)
+            try
             {
-                AuthenticationController.HasProfile = true;
-            }
-            else
-            {
-                AuthenticationController.HasProfile = false;
-                if (User.Identity.IsAuthenticated)
+                if (User.Identity.Name != null)
                 {
-                    return RedirectToAction("Create", "Profiles", new { area = "" });
+                    var profile = _context.Profile
+                    .FirstOrDefault(m => m.UserID == User.Identity.Name);
+                    if (profile != null)
+                    {
+                        AuthenticationController.HasProfile = true;
+                    }
+                    else
+                    {
+                        AuthenticationController.HasProfile = false;
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            return RedirectToAction("Create", "Profiles", new { area = "" });
+                        }
+                    }
+
                 }
+            }
+            catch (Exception e)
+            {
+                
             }
             return View();
         }
